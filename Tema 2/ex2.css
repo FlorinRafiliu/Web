@@ -1,0 +1,26 @@
+.circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #e6e686, #64803b, #e6e686);
+    animation: orizontal 5s infinite linear;
+    position:fixed
+}   
+
+.wrapper {
+    animation: Yaxis 4s infinite ease-in-out;
+    position: absolute;
+}
+
+@keyframes Yaxis { 
+    0% {top: 0%;}
+    25% {top: 90%}
+    50% {top: 20%;}
+    75% {top: 40%;}
+    100% {top: 0%;}
+}
+
+@keyframes orizontal { 
+    0% {left: 0%;}
+    100% {left: 100%; transform: rotate(360deg);}
+}

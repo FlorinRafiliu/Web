@@ -1,0 +1,4 @@
+let tags = document.getElementsByTagName("a");
+for(let i = 0; i < tags.length; i++)
+    if(tags[i].href.match("https://www.cs.ubbcluj.ro/"))
+        tags[i].hidden = true;

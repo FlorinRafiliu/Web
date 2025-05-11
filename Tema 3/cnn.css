@@ -1,0 +1,269 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar {
+    display: flex;
+    position: fixed;
+    background-color: white;
+    width: 95%;
+    margin: 0;
+    padding: 0;
+    justify-content: space-between;
+}
+
+.line {
+    border-radius: 20px;
+}
+
+.navbar-left {
+    display: flex;
+    gap:23px;
+    align-items: center;
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.logo{
+    width: 45px;
+    height: 21px;
+    /* background-image: url("CNN.svg"); */
+    object-fit: fill;
+}
+
+.arrow {
+    width: 11px;
+    height: 14px;
+    margin-left: 10px;
+    object-fit: fill;
+}
+
+.play {
+    width: 20px;
+    height: 15px;
+    margin-right: 5px;
+    object-fit: fill;
+}
+
+.search {
+    width: 30px;
+    height: 30px;
+    object-fit: fill;
+}
+
+.navbar-item {
+    color: #0c0c0c;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    font-weight: 550;
+    font-family: Helvetica;
+    text-decoration: none;
+}
+
+
+.separator {
+    margin: 0;
+    margin-top: 40px;
+    height: 1px;
+    background-color: black;
+    width: 95%;
+}
+
+.sign-in {
+    color: #0c0c0c;
+    background-color: white;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    font-weight: 550;
+    font-family: Helvetica;
+    text-decoration: none;  
+    border: 1px solid rgb(236, 229, 229);
+    border-radius: 8px;
+    padding: 5px 10px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 11px;   
+}
+
+.topics {
+    display: flex;
+    width: 85%;
+    justify-content: space-between;
+    margin:20px;
+}
+
+.topics div{
+    font-family:  Helvetica, Arial, sans-serif;
+    font-size: 16px;
+}
+
+.topics hr {
+    margin: 0px;
+    padding: 0px;
+    width: 2px;
+    background-color: #B1B1B1;
+    height: 17px;
+    border: none;
+}
+
+.content {
+    display: flex;
+    width: 95%;
+    justify-content: space-between;
+    margin: 0px;
+    margin-top: 15px;
+}
+
+.zona_1 {
+    display: flex;
+    flex-direction: column;
+    width: 40.5%;
+    font-size: 25px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 700;
+}
+
+.zona_1 h2 {
+    line-height: 37px;  
+    margin: 0px;
+    margin-bottom: 20px;
+}
+
+.zona_1 img {
+    border-radius: 3px;
+}
+
+.caption {
+    text-align: right;
+    font-size: 10px;
+    font-weight: 100;
+    color: gray;
+    margin: 10px;
+}
+
+.zona_1 h3 {
+    margin: 0px;
+    font-size: 20px;
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 24px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.zona1_mini {
+    display: flex;
+    width: 100%;
+    color: #0c0c0c;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: .5px;
+    line-height: 22px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    align-items:start;
+    border-top: 1px solid #e0dfdf;
+    justify-content: space-between;
+}
+
+.zona_2{
+    display: flex;
+    flex-direction: column;
+    width: 32%;
+}
+
+.zona_2 h3 {
+    margin: 0px;
+    font-size: 20px;
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 24px;
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+.list {
+    margin: 0px;
+    margin-left: -15px;
+    margin-bottom: 20px;
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 24px;
+    font-weight: 200;
+    font-size: 17px;
+}
+
+.list li {
+    margin: 0px;
+    margin-top: 12px;
+}
+
+b img {
+    width: 20px;
+    height: 15px;
+    object-fit: fill;
+}
+
+li b {
+    display: inline;
+    align-items: center;
+}
+
+li span {
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 24px;
+    font-weight: 600;
+    font-size: 17px;
+    color: #D50000;
+}
+
+.zona_2 img {
+    border-radius: 3px;
+}
+
+.zona_3{
+    display: flex;
+    flex-direction: column;
+    width: 24%;
+}
+
+.zona_3 img {
+    border-radius: 3px;
+}
+
+.zona3_mini {
+    display: flex;
+    width: 100%;
+    color: #0c0c0c;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: .5px;
+    line-height: 22px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    align-items:start;
+    border-top: 1px solid #e0dfdf;
+    justify-content: space-between;
+}
+
+.zona_3 h3 {
+    margin: 0px;
+    font-size: 20px;
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 24px;
+    font-weight: 600;
+    margin-top: 8px;
+    margin-bottom: 15px;
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Whack-a-Mole Game</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+    }
+
+    #scoreboard {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background: #333;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 18px;
+      z-index: 1000;
+    }
+
+    .mole {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      cursor: pointer;
+    }
+
+    #gameover {
+      display: none;
+      position: fixed;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 30px;
+      font-size: 24px;
+      border-radius: 10px;
+      z-index: 1001;
+    }
+  </style>
+</head>
+<body>
+
+<div id="scoreboard">Score: 0</div>
+<div id="gameover">🎉 Game Over! You won! 🎉</div>
+
+<script>
+$(document).ready(function() {
+  var score = 0;
+  var maxScore = 10;
+  var imageUrl = "https://i.imgur.com/NM9mV1x.png"; // mole image URL, change as needed
+
+  function spawnMole() {
+    if (score >= maxScore) return;
+
+    var $mole = $('<img class="mole" src="' + imageUrl + '">');
+
+    // Random position within window bounds
+    var maxX = $(window).width() - 80;
+    var maxY = $(window).height() - 80;
+    var posX = Math.floor(Math.random() * maxX);
+    var posY = Math.floor(Math.random() * maxY);
+
+    $mole.css({ top: posY + 'px', left: posX + 'px' });
+
+    // Add to body
+    $('body').append($mole);
+
+    // Click handler
+    $mole.on('click', function() {
+      score++;
+      $('#scoreboard').text("Score: " + score);
+      $mole.remove();
+
+      if (score >= maxScore) {
+        $('#gameover').fadeIn();
+        return;
+      }
+    });
+
+    // Remove after 1 second
+    setTimeout(function() {
+      $mole.fadeOut(200, function() {
+        $(this).remove();
+      });
+    }, 1000);
+  }
+
+  function gameLoop() {
+    if (score >= maxScore) return;
+    spawnMole();
+
+    // Random time between spawns (0.5s to 1.5s)
+    var delay = Math.floor(Math.random() * 1000) + 500;
+    setTimeout(gameLoop, delay);
+  }
+
+  // Start the game
+  gameLoop();
+});
+</script>
+
+</body>
+</html>

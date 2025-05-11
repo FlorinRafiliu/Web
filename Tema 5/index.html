@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        var images = {"0.jpg" : 1, "1.jpg" : 1, "2.jpg" : 2, "3.jpg" : 3, "4.jpg" : 1, "5.jpg" : 2, "6.jpg" : 3,
+                      "7.jpg" : 1, "8.jpg" : 2, "9.jpg" : 3};
+
+        $(document).ready(function() {
+            newImage(0, 0);   
+        });
+
+        function newImage(id, score) {
+            let left = Math.floor(Math.random() * (1000 - 200) ) + 200;
+            let top = Math.floor(Math.random() * 500);
+            let image = Math.floor(Math.random() * 9) + ".jpg";
+
+            id += 1;
+
+            $("body").append("<img id='" + id + "' src='" + image + "'>");
+            $("#" + id).css("position", "absolute");
+            $("#" + id).css("width", "200px");  
+            $("#" + id).css("top", top);
+            $("#" + id).css("left", left);
+           
+
+            let timeOutId = setTimeout( function () {
+                $("#" + id).remove();
+                newImage(id, score);
+            }, Math.floor(Math.random() * 1000) + 500);
+
+            $("#" + id).click(function( ) {
+                $(this).remove();
+                clearTimeout(timeOutId);
+                if(score + images[image] >= 10) {
+                    $("p").text("Score: " + (score + images[image]));
+                    alert("You win!");
+                } else {
+                    $("p").text("Score: " + (score + images[image]));
+                    newImage(id, score + images[image]);
+                }
+            });
+        }
+    </script>
+
+</head>
+<body>
+    <p>Score: 0</p>
+</body>
+</html>
