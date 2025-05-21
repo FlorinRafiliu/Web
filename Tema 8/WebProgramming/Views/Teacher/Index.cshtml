@@ -1,0 +1,100 @@
+﻿@model WebProgramming.ViewModels.TeacherViewModel
+@{
+    ViewData["Title"] = "Teacher Dashboard";
+}
+
+<h2 class="text-center">Welcome back, @Model.Username!</h2>
+
+<form method="get" asp-controller="Teacher" asp-action="Index">
+    <label>Select Group:</label>
+    <select asp-for="selectedGroup" asp-items="Model.groups" onchange="this.form.submit()">
+        <option value="">-</option>
+    </select>
+</form>
+
+
+<!-- Students Table -->
+@if (@Model.selectedGroup != null)
+{
+    <h3>Students (Group: @Model.selectedGroup)</h3>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Grades</th>
+                <th>Add Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model.students)
+            {
+                <tr>
+                    <td>@student.Username</td>
+                    <td>
+                        <a asp-action="Index" asp-route-selectedGroup="@Model.selectedGroup" asp-route-studentId="@student.Sid" asp-route-page="@Model.currentPage">See Grades</a>
+                    </td>
+                    <td>
+                        <a asp-controller="Grade" asp-action="Create" asp-route-id="@student.Sid">Add Grade</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <div>
+        <div>Page @Model.currentPage / @Model.totalPages</div>
+
+        @if (Model.currentPage > 1)
+        {
+            <a asp-action="Index" asp-route-selectedGroup="@Model.selectedGroup" asp-route-page="@(Model.currentPage - 1)" asp-route-pageSize="@Model.pageSize">Prev</a>
+        }
+        @if (Model.currentPage < Model.totalPages)
+        {
+            <a asp-action="Index" asp-route-selectedGroup="@Model.selectedGroup" asp-route-page="@(Model.currentPage + 1)" asp-route-pageSize="@Model.pageSize">Next</a>
+        }
+
+        <form method="get" asp-controller="Teacher" asp-action="Index">
+            <input type="hidden" asp-for="selectedGroup" value="@Model.selectedGroup" />
+            <label>Select PageSize:</label>
+            <select asp-for="pageSize" onchange="this.form.submit()">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+        </form>
+
+    </div>
+}
+
+<!-- Grades Table -->
+@if (Model.grades != null && Model.grades.Count > 0) 
+{ 
+     <table class="table table-striped"> 
+         <thead> 
+             <tr> 
+                 <th>Course</th> 
+                 <th>Grade</th> 
+                 <th>Modify</th> 
+             </tr> 
+         </thead> 
+         <tbody> 
+             @foreach (var grade in Model.grades) 
+             { 
+                 <tr> 
+                     <td>@grade.Course</td> 
+                     <td>@grade.GradeValue</td> 
+                     <td> 
+                         <a asp-controller="Grade" asp-action="Edit" asp-route-id="@grade.Gid">Edit</a> 
+                     </td> 
+                 </tr> 
+             } 
+         </tbody> 
+     </table> 
+} 
+
+<form asp-controller="Login" asp-action="Logout" method="post">
+    <button type="submit" class="btn btn-danger">Logout</button>
+</form>

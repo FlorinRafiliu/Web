@@ -1,0 +1,40 @@
+﻿@model WebProgramming.ViewModels.GradeViewModel
+
+@{
+    ViewData["Title"] = "Create Grade";
+}
+
+<div id="addDiv">
+    <h1>Create Grade</h1>
+
+    <form asp-controller="Grade" asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" asp-for="Sid" value="@ViewBag.StudentId" />
+
+        <div>
+            <label asp-for="Course"></label>
+            <input asp-for="Course" class="form-control" />
+            <span asp-validation-for="Course" class="text-danger"></span>
+        </div>
+        <br />
+
+        <div>
+            <label asp-for="GradeValue"></label>
+            <input asp-for="GradeValue" class="form-control" type="number" />
+            <span asp-validation-for="GradeValue" class="text-danger"></span>
+        </div>
+        <br />
+
+        <div>
+            <a asp-action="Index" asp-controller="Student" asp-route-id="@ViewBag.StudentId" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

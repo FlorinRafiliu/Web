@@ -1,0 +1,32 @@
+﻿@model WebProgramming.Models.Student
+
+@{
+    ViewData["Title"] = "Student Dashboard";
+}
+
+<h2 style="text-align: center;">Welcome back, @Model.Username!</h2>
+
+<div>
+    <h3>Grades:</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Course</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var grade in Model.Grades)
+            {
+                <tr>
+                    <td>@grade.Course</td>
+                    <td>@grade.GradeValue</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<form asp-controller="Login" asp-action="Logout" method="post">
+    <button type="submit" class="btn btn-danger">Logout</button>
+</form>
