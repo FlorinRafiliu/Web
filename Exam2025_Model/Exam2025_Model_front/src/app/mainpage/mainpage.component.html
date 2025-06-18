@@ -1,0 +1,68 @@
+
+
+<div>
+    <form *ngIf="nameIsInserterd === false" (ngSubmit)="enterNameHandler()">
+        <label for="name">Enter name:</label>
+        <input type="text" id="name" [(ngModel)]="name" name="name" required><br><br>
+
+        <button type="submit">Log in</button>
+    </form>
+
+    <div *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</div>
+</div>
+
+<div *ngIf="nameIsInserterd">
+    <table>
+        <thead>
+            <th>Project Name</th>
+            <th>Description</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let project of projects">
+                <td>{{project.name}}</td>
+                <td>{{project.description}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <button *ngIf="onlyMine == false" type="button" (click)="loadDataById()">Show only my projects</button>
+    <button *ngIf="onlyMine" type="button" (click)="loadData()">Show all projects</button>
+
+    <br>
+    <br>
+
+    <table *ngIf="developers.length > 0">
+        <thead>
+            <th>Developer Name</th>
+            <th>Age</th>
+            <th>Skills</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let developer of developers">
+                <td>{{developer.name}}</td>
+                <td>{{developer.age}}</td>
+                <td>{{developer.skills}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form (ngSubmit)="getDevelopers()">
+        <label for="skill">Enter skill:</label>
+        <input type="text" id="skill" [(ngModel)]="skill" name="skill" required><br><br>
+
+        <button type="submit">Search</button>
+    </form>
+
+    <br>
+    <br>    
+
+    <form (ngSubmit)="assignProjects()">
+        <label for="developer">Developer:</label>
+        <input type="text" id="developer" [(ngModel)]="developer" name="developer" required>
+        <label for="projectsName">Projects:</label>
+        <input type="text" id="projectsName" [(ngModel)]="projectsName" name="projectsName" placeholder="ex.: project1,project2" required>
+        
+        <button type="submit">Assign</button>
+    </form>
+</div>
+
+<button *ngIf="nameIsInserterd" type="button" (click)="logout()">Log out</button>
